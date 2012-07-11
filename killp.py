@@ -47,9 +47,10 @@ def kill_by_name(name):
         else:
             #print pid
             cmd = 'kill -9 ' + pid
-            os.system(cmd)
-
-            print "%s Terminaled" % name
+            n = os.system(cmd)
+            n = n >> 8
+            if n == 0:
+                print "%s Terminaled" % name
 
 def main():
     usage = "usage: %prog [options] arg"
@@ -66,7 +67,6 @@ def main():
 
     (options, args) = parser.parse_args()
     for arg in args:
-	print arg
         kill_by_name(arg)
 
 if __name__ == '__main__':
